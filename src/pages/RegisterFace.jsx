@@ -15,21 +15,16 @@ const STEPS = {
 export default function RegisterFace() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') || '';
-
-  const [step, setStep] = useState(STEPS.LOADING);
+  const [step, setStep] = useState(token ? STEPS.LOADING : STEPS.ERROR);
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(token ? '' : 'Missing token in link');
 
   const videoRef = useRef(null);
   const streamRef = useRef(null);
 
   useEffect(() => {
-    if (!token) {
-      setMessage('Missing token in link');
-      setStep(STEPS.ERROR);
-      return;
-    }
+    if (!token) return;
 
     const loadModels = async () => {
       const MODEL_URL = '/models';
@@ -71,7 +66,6 @@ export default function RegisterFace() {
   useEffect(() => {
     if (step === STEPS.READY) startCamera();
     return () => stopCamera();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   const register = async () => {

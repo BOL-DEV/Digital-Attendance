@@ -23,7 +23,7 @@ export default function HocSession() {
         const res = await api.get(`/sessions/${session_id}`);
         setSession(res.data.session);
         setAttendance(res.data.attendance);
-      } catch (err) {
+      } catch {
         toast.error('Session not found');
         navigate('/hoc');
       } finally {
@@ -47,7 +47,10 @@ export default function HocSession() {
   }, [session_id, navigate]);
 
   useEffect(() => {
-    refreshQR();
+    const timeout = setTimeout(() => {
+      refreshQR();
+    }, 0);
+    return () => clearTimeout(timeout);
   }, [refreshQR]);
 
   useEffect(() => {
@@ -109,7 +112,7 @@ export default function HocSession() {
       await api.put(`/sessions/${session_id}/close`);
       toast.success('Session closed');
       navigate('/hoc');
-    } catch (err) {
+    } catch {
       toast.error('Failed to close session');
       setClosing(false);
     }

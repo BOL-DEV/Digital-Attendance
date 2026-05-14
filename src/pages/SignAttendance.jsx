@@ -68,7 +68,7 @@ export default function SignAttendance() {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
-    } catch (err) {
+    } catch {
       toast.error('Could not access camera. Allow permission and try again.');
     }
   };
@@ -83,7 +83,6 @@ export default function SignAttendance() {
   useEffect(() => {
     if (step === STEPS.FACE_SCAN) startCamera();
     return () => stopCamera();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   const handleMatricSubmit = (e) => {
