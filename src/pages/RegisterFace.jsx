@@ -50,18 +50,22 @@ function ProgressDots({ currentStep }) {
 function Shell({ step, children }) {
   return (
     <div className="min-h-screen overflow-hidden bg-[#08111f] text-slate-100">
-      <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.16),_transparent_32%),linear-gradient(180deg,_#0b1324_0%,_#08111f_100%)]">
-        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.04)_1px,transparent_1px)] [background-size:72px_72px]" />
+      <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.16),transparent_32%),linear-gradient(180deg,#0b1324_0%,#08111f_100%)]">
+        <div className="pointer-events-none absolute inset-0 opacity-25 bg-[linear-gradient(rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.04)_1px,transparent_1px)]" />
         <div className="relative flex min-h-screen items-center justify-center px-4 py-8">
-          <div className="w-full max-w-md rounded-[32px] border border-white/10 bg-white/6 p-6 shadow-[0_30px_120px_rgba(2,6,23,0.45)] backdrop-blur-xl sm:p-8">
+          <div className="w-full max-w-md rounded-4xl border border-white/10 bg-white/6 p-6 shadow-[0_30px_120px_rgba(2,6,23,0.45)] backdrop-blur-xl sm:p-8">
             <div className="flex items-center justify-center">
               <div className="flex h-14 w-14 items-center justify-center rounded-3xl border border-sky-400/20 bg-sky-500/10 text-xl font-bold text-sky-300">
                 A
               </div>
             </div>
             <div className="mt-4 text-center">
-              <p className="text-lg font-bold tracking-tight text-white">Attendix</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">Biometric Onboarding</p>
+              <p className="text-lg font-bold tracking-tight text-white">
+                Attendix
+              </p>
+              <p className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">
+                Biometric Onboarding
+              </p>
             </div>
             <ProgressDots currentStep={step} />
             {children}
